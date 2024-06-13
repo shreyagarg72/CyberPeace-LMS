@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LoginUI from '../Components/LoginUI';
 import AdminLoginUI from '../Components/AdminLoginUI';
 import DashboardUI from '../Components/DashboardUI';
@@ -22,11 +22,15 @@ import AdminDiscussion from '../Components/adminDiscussion';
 import AdminClassesandCalender from '../Components/adminClassesandCalender';
 
 const RouterDOM = () => {
+    // Redirect function for root URL
+    const redirectRoot = () => {
+        window.location.href = '/loginui'; // Redirect to '/loginui' path
+        return null; // Return null because Route expects a component or element
+    };
+
     return (
         <Router>
-            <Route exact path="/">
-                <Redirect to="/loginui" />
-            </Route>
+            <Route exact path="/" component={redirectRoot} />
             <Route exact path="/loginui" component={LoginUI} />
             <Route exact path="/adminloginui" component={AdminLoginUI} />
             <Route exact path="/dashboardui" component={DashboardUI} />
